@@ -1,0 +1,33 @@
+Thank you for interviewing with the Personalization team at Nordstrom!  We hope that you find the process enjoyable.
+
+We have designed a project for you to work on at home so that you can show us what an awesome developer you are. We really appreciate you giving us your free time! Please do not spend more than 4 - 5 hours on this project.  When you are finished please return your project to your recruiter (or send a link to your github url).
+
+The project:
+Create a website that displays product data. When an item is clicked redirect the user to the product detail page.  Use the UX drawings to direct your feature development.
+
+
+See SearchResults.PNG for a UX drawing of the search results page.
+See ProductPage.PNG for a UX drawing of the search results page.
+
+Technical information:
+
+In the file Database.json you will find a json array of product data.  Each item has the following properties:
+brand -> This is the brand of the product in plain text.
+formatted_regular_price -> a USD formatted price
+image_url -> a relative image path (more information below)
+name -> the product description
+style_id -> a unique identifier
+
+Use this file as a representation of our product catalog.
+
+
+To retrieve the image thumbnail append the image_url to the end of this url:
+http://g.nordstromimage.com/imagegallery/store/product/medium/
+
+To retrieve the product detail image append the image_url to the end of this url:
+http://g.nordstromimage.com/imagegallery/store/product/large/
+
+The why work with us link should link to this url:
+http://about.nordstrom.com/careers/#/about-us/main
+
+Please let us know if anything is unclear or if you need help!

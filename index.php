@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nordstrom</title>
+	<meta charset="UTF-8">
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+	<script>
+		// JSON DATABASE BEFORE FORMATTING, NOW ASSIGNED TO JS STRING:
+		var pre_catalog = '{"clothing_items" : ['+
+							'{"brand":"Zella","formatted_regular_price":"$68.00","image_url":"17/_8884657","name":"Zella \'Run\' Stripe Half Zip Pullover","style_id":"3552410"},'+
+							'{"brand":"Hinge","formatted_regular_price":"$26.00","image_url":"7/_8904187","name":"Hinge® Jersey Tank","style_id":"3223974"},'+
+							'{"brand":"Trouve","formatted_regular_price":"$68.00","image_url":"7/_8547507","name":"Trouvé Side Slit Tunic Sweater","style_id":"3530925"},'+
+							'{"brand":"Halogen®","formatted_regular_price":"$46.00","image_url":"18/_8592178","name":"Halogen® Three Quarter Sleeve Cardigan (Regular & Petite)","style_id":"3320328"},'+
+							'{"brand":"Zella","formatted_regular_price":"$58.00","image_url":"4/_8889484","name":"Zella \'All Shirred Up\' Pullover","style_id":"3460660"},'+
+							'{"brand":"Zella","formatted_regular_price":"$58.00","image_url":"14/_8680834","name":"Zella \'Easy\' Sweatshirt","style_id":"3493124"},'+
+							'{"brand":"Hinge","formatted_regular_price":"$26.00","image_url":"7/_8904187","name":"Hinge® Jersey Tank","style_id":"3223974"},'+
+							'{"brand":"Trouve","formatted_regular_price":"$38.00","image_url":"7/_8803147","name":"Trouvé \'Luxe\' Tee","style_id":"3530951"},'+
+							'{"brand":"Stem","formatted_regular_price":"$38.00","image_url":"2/_8736822","name":"Stem Seamed Dolman Sleeve Tee","style_id":"3530224"},'+
+							'{"brand":"Zella","formatted_regular_price":"$52.00","image_url":"13/_5917973","name":"Zella \'Live In\' Leggings","style_id":"3035710"},'+
+							'{"brand":"Pleione","formatted_regular_price":"$58.00","image_url":"15/_8164075","name":"Pleione Mixed Media Roll Sleeve Top (Regular & Petite)","style_id":"3438286"},'+
+							'{"brand":"Paige Denim","formatted_regular_price":"$158.00","image_url":"10/_7163970","name":"Paige Denim \'Skyline 12\' Skinny Stretch Jeans (Twilight)","style_id":"3128824"} ]}';
+	
+		// CONVERTING JSON DB TO JS OBJECT:
+		catalog_shell = eval ("(" + pre_catalog + ")");
+		catalog = catalog_shell['clothing_items'];
+
+		// console.log(catalog);
+
+		// ======================================================
+
+		var txt = '{ "employees" : [' +
+					'{ "firstName":"John" , "lastName":"Doe" },' +
+					'{ "firstName":"Anna" , "lastName":"Smith" },' +
+					'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
+
+		var obj = eval ("(" + txt + ")");
+
+		retrieveItemsByBrand = function(brand)
+		{
+			brandPicsUrl = [];
+
+			for (var current_item_number = 0; current_item_number < catalog.length; current_item_number++)
+			{
+				brandPicsUrl.push("http://g.nordstromimage.com/imagegallery/store/product/large/" + catalog[current_item_number]['image_url']);
+			};
+
+			console.log(brandPicsUrl);
+		}
+
+		viewItems = function(brand)
+		{
+			console.log("you are trying to view some things now");
+			console.log(brand);
+			retrieveItemsByBrand(brand);
+		}
+
+		brandPicked = function(brand)
+		{
+			viewItems(brand);
+		}
+
+	</script>
+</head>
+
+
+<body>
+	<div id = "top_nav_bar">
+
+		<img src="img/nordstrom-logo.gif" alt="logo">
+		<h6><a href="http://about.nordstrom.com/careers/#/about-us/main">| why work for us? |</a></h6>
+		
+	</div>
+
+	<select name="" id="brand_select" onChange="brandPicked(this.value);">
+		
+	</select>
+
+
+	<p>
+		First Name: <span id="fname"></span><br /> 
+		Last Name: <span id="lname"></span><br /> 
+	</p> 
+
+	<script>
+
+		select_logic = "";
+		unsorted_brand_array = [];
+
+		for (var current_item_number = catalog.length - 1; current_item_number >= 0; current_item_number--)
+		{
+			unsorted_brand_array.push(catalog[current_item_number]['brand']);
+		};
+
+		//REMOVE DUPLICATE BRANDS FROM THE ARRAY
+		reduced_brand_array = jQuery.unique( unsorted_brand_array );
+
+		reduced_brand_array.sort();
+
+		// console.log(reduced_brand_array);
+
+		//ADD IN SELECTION OPTION TO THE SELECTION ARRAY:
+
+		reduced_brand_array.unshift("--Select Brand--")
+
+		for (var current_item_number = 0; current_item_number < reduced_brand_array.length; current_item_number++)
+		{
+			reduced_brand_array[current_item_number]
+			select_logic += "<option value='" + reduced_brand_array[current_item_number] + "'>" + reduced_brand_array[current_item_number] + "</option>";
+		};
+
+		// for (var item in catalog)
+		// {
+		// 	console.log(item);
+		//     	// console.log(detail['brand']);
+		//     for (var detail in item)
+		//     {
+		//     	console.dir(detail);
+		//     }
+		// }
+		document.getElementById("brand_select").innerHTML = select_logic;
+		document.getElementById("fname").innerHTML = obj.employees[1].firstName;
+		document.getElementById("lname").innerHTML = obj.employees[1].lastName; 
+	</script>
+		
+
+</body>
+</html>
