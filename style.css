@@ -48,15 +48,10 @@ a:hover{
 	#top_nav_bar img{
 		width: 120px;
 	}
-/*
-	html {
-		-webkit-text-size-adjust: none;
-	}
 
-	#main-nav a {
-		font-size: 90%;
-		padding: 10px 8px;
-	}*/
+	.large_display{
+		max-width: 100%;
+	}
 
 	body{
 		background-color: orange;
