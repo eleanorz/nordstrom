@@ -15,7 +15,9 @@ body{
   text-align: center;
 }
 
-#checkoutbutton:hover {opacity: 0.6; }
+#checkoutbutton:hover {
+	opacity: 0.6;
+}
 
 #top_nav_bar{
 	margin: 0px;
