@@ -38,13 +38,28 @@
 
 		var obj = eval ("(" + txt + ")");
 
+		imageClick = function(style_id){
+			console.log(style_id);
+
+			style_id = "#" + style_id;
+
+			$( document ).ready(function() {
+			 
+			$(style_id ).hide();
+			// $("'#" + style_id + "'" ).hide();
+			 
+			});
+		}
+
+
+
 		retrieveItemsByBrand = function(brand)
 		{
 			brandPicsUrl = [];
 
 			for (var current_item_number = 0; current_item_number < catalog.length; current_item_number++)
 			{
-				brandPicsUrl.push("http://g.nordstromimage.com/imagegallery/store/product/large/" + catalog[current_item_number]['image_url']);
+				brandPicsUrl.push("<a href='javascript:imageClick(" + catalog[current_item_number]['style_id'] + ")'><img id = '" + catalog[current_item_number]['style_id'] + "' class = large_display src='http://g.nordstromimage.com/imagegallery/store/product/large/" + catalog[current_item_number]['image_url'] + ".jpg' alt='" + catalog[current_item_number]['name'] + "'></a>" );
 			};
 
 			console.log(brandPicsUrl);
@@ -55,6 +70,7 @@
 			console.log("you are trying to view some things now");
 			console.log(brand);
 			retrieveItemsByBrand(brand);
+			document.getElementById("stage").innerHTML = brandPicsUrl;
 		}
 
 		brandPicked = function(brand)
@@ -68,7 +84,6 @@
 
 <body>
 	<div id = "top_nav_bar">
-
 		<img src="img/nordstrom-logo.gif" alt="logo">
 		<h6><a href="http://about.nordstrom.com/careers/#/about-us/main">| why work for us? |</a></h6>
 		
@@ -77,6 +92,10 @@
 	<select name="" id="brand_select" onChange="brandPicked(this.value);">
 		
 	</select>
+
+	<div id = "stage">
+		
+	</div>
 
 
 	<p>
