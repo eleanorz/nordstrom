@@ -8,16 +8,17 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 
-
 	<body>
 		<div id = "top_nav_bar">
 			<img src="img/nordstrom-logo.gif" alt="logo">
 			<h6><a href="http://about.nordstrom.com/careers/#/about-us/main">| why work for us? |</a></h6>		
 		</div>
 
+
+
 		<!-- BRAND SELECTOR BAR -->
-		<select name="" id="brand_select" onChange="brandPicked(this.value);">		
-		</select>
+<!-- 		<select name="" id="brand_select" onChange="brandPicked(this.value);">		
+		</select> -->
 
 		<!-- STAGING LOCATION FOR IMAGES -->
 		<div id = "stage">		
